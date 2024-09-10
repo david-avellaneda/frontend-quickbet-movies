@@ -1,0 +1,35 @@
+.btn {
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 100%;
+	background: var(--txt);
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.6rem;
+}
+
+.btn svg {
+	filter: invert(1);
+}
+
+[data-theme='dark'] .btn svg {
+	filter: invert(0);
+}
+
+@media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
+	.btn {
+		width: 4rem;
+		height: 4rem;
+		padding: 0.7rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.btn {
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0.4rem;
+	}
+}
