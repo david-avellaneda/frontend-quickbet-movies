@@ -166,15 +166,12 @@
 
 .config {
 	display: flex;
-	align-items: center;
-}
-
-.config li:first-child {
-	margin-inline-end: 3rem;
+	justify-content: flex-start;
+	gap: 3rem;
 }
 
 .config a {
-	width: fit-content;
+	width: 3.5rem;
 	height: 3.5rem;
 	display: block;
 }
