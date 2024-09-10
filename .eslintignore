@@ -1,0 +1,7 @@
+*
+!src
+!src/**
+!.eslintrc.json
+!next.config.mjs
+!package.json
+!tsconfig.json
