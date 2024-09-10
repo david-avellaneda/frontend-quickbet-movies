@@ -1,0 +1,11 @@
+*
+!src
+!src/**
+!.eslintrc.json
+!.huskyrc
+!.lintstagedrc
+!.prettierrc
+!next.config.mjs
+!package.json
+!README.md
+!tsconfig.json
