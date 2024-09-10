@@ -61,8 +61,14 @@ svg {
 	overflow: hidden;
 }
 
-.no-transition * {
+.no-transition main * {
 	transition: none !important;
+}
+
+@media (min-width: 1024px) {
+	.no-transition * {
+		transition: none !important;
+	}
 }
 
 .main {
