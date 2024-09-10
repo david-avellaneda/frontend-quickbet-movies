@@ -124,10 +124,11 @@
 	grid-auto-rows: max-content;
 	padding-block-end: 10rem;
 	transform: translateX(-100%);
+	transition: transform 0.5s ease-in-out;
 }
 
 .items_active {
-	transform: unset;
+	transform: translateX(0);
 }
 
 .links,

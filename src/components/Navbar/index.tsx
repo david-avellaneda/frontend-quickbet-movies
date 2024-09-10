@@ -10,36 +10,24 @@ import { usePathname } from 'next/navigation'
 const Navbar = (): JSX.Element => {
 	const [theme, setTheme] = useState(false)
 	const [scrolled, setScrolled] = useState(false)
-	const [isSmallScreen, setIsSmallScreen] = useState(false)
 	const [open, setOpen] = useState<undefined | boolean>(undefined)
 
 	const router = usePathname() === '/'
 
 	const handleMenu = (): void => setOpen(!open)
+	const handleClick = (): void => setOpen(false)
 
 	useEffect(() => {
 		function handleScroll() {
 			window.scrollY > 120 ? setScrolled(true) : setScrolled(false)
 		}
 
-		function handleResize(): void {
-			if (window.innerWidth < 1000) {
-				setIsSmallScreen(true)
-			} else {
-				setOpen(false)
-				setIsSmallScreen(false)
-			}
-		}
-
 		window.addEventListener('scroll', handleScroll)
-		window.addEventListener('resize', handleResize)
 
 		handleScroll()
-		handleResize()
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
-			window.removeEventListener('resize', handleResize)
 		}
 	}, [])
 
@@ -58,7 +46,7 @@ const Navbar = (): JSX.Element => {
 			className={`${styles.header} ${open ? styles.active : ''} ${router && scrolled ? styles.scrolled : ''} ${!router ? styles.scrolled : ''}`}
 		>
 			<nav>
-				<Link href='/' className={styles.container_logo}>
+				<Link href='/' className={styles.container_logo} onClick={handleClick}>
 					<Image
 						src='/logo-white.svg'
 						alt='Logo Quickbet Movies'
@@ -92,36 +80,41 @@ const Navbar = (): JSX.Element => {
 					<span></span>
 					<span></span>
 				</button>
-				<ul
-					className={`${styles.items} ${open ? styles.items_active : ''}`}
-					style={{
-						transition: isSmallScreen ? 'transform 0.5s ease-in-out' : 'none'
-					}}
-				>
+				<ul className={`${styles.items} ${open ? styles.items_active : ''}`}>
 					<div className={styles.links}>
 						<li>
-							<Link href='/'>Home</Link>
+							<Link href='/' onClick={handleClick}>
+								Home
+							</Link>
 						</li>
 						<li>
-							<Link href='/popular'>Popular</Link>
+							<Link href='/popular' onClick={handleClick}>
+								Popular
+							</Link>
 						</li>
 						<li>
-							<Link href='/top-rated'>Top rated</Link>
+							<Link href='/top-rated' onClick={handleClick}>
+								Top rated
+							</Link>
 						</li>
 						<li>
-							<Link href='/now-playing'>Now playing</Link>
+							<Link href='/now-playing' onClick={handleClick}>
+								Now playing
+							</Link>
 						</li>
 						<li>
-							<Link href='/upcoming'>Upcoming</Link>
+							<Link href='/upcoming' onClick={handleClick}>
+								Upcoming
+							</Link>
 						</li>
 					</div>
 					<div className={styles.config}>
 						<li>
-							<Link href='#'>
+							<Link href='#' onClick={handleClick}>
 								<Image src='/user.svg' alt='User' width={20} height={20} />
 							</Link>
 						</li>
-						<li>
+						<li onClick={handleClick}>
 							<ThemeToggleBtn theme={theme} setTheme={setTheme} />
 						</li>
 					</div>
