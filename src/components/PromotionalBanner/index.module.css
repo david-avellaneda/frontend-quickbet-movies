@@ -1,0 +1,103 @@
+.container {
+	width: 100%;
+	height: 100vh;
+	position: static;
+	background-image: linear-gradient(to bottom, transparent 10%, black 80%),
+		url('/kung-fu-panda-4.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: scroll;
+	background-position: center;
+	display: flex;
+	align-items: flex-end;
+	padding-block-end: 6rem;
+}
+
+.info {
+	width: var(--content-width);
+	max-width: var(--content-width);
+	margin: 0 auto;
+}
+
+.description {
+	color: #ffffff;
+	margin-block-end: 6rem;
+}
+
+.description h1 {
+	font-size: 3.5rem;
+	text-align: start;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: 700;
+	margin-block-end: 2.5rem;
+}
+
+.description p {
+	font-size: 1.8rem;
+	text-align: start;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-weight: 700;
+	line-height: 2.4rem;
+}
+
+.details {
+	width: var(--content-width);
+	height: 10rem;
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+}
+
+.details button {
+	width: 3rem;
+}
+
+.details div p {
+	font-size: 2.4rem;
+}
+
+@media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
+	.description {
+		margin-block-end: 8rem;
+	}
+
+	.description h1 {
+		font-size: 5.5rem;
+		margin-block-end: 3.5rem;
+	}
+
+	.description p {
+		font-size: 2.8rem;
+		line-height: 4rem;
+	}
+
+	.details {
+		gap: 6rem;
+		height: 12rem;
+	}
+
+	.details > button {
+		width: 3.5rem;
+	}
+
+	.details div p {
+		font-size: 2.6rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.info {
+		display: flex;
+		align-items: center;
+	}
+
+	.description {
+		width: 70%;
+	}
+
+	.details {
+		width: 30%;
+		height: 10rem;
+		justify-content: flex-end;
+	}
+}
