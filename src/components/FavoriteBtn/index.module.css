@@ -1,0 +1,17 @@
+.btn {
+	outline: none;
+	background-color: transparent;
+	border: none;
+}
+
+.btn svg {
+	fill: var(--txt);
+	cursor: pointer;
+	transition: fill 0.3s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+	.btn svg:hover {
+		fill: var(--primary);
+	}
+}
