@@ -52,24 +52,14 @@ const Navbar = (): JSX.Element => {
 						alt='Logo Quickbet Movies'
 						width={313}
 						height={68}
-						className={`
-              ${router && !scrolled && !open && styles.show_img} 
-              ${router && !scrolled && open && theme && styles.show_img}
-              ${router && scrolled && theme && styles.show_img}
-              ${router && scrolled && !theme && styles.hide_img}
-              ${!router && theme ? styles.show_img : styles.hide_img}
-            `}
+						className={`${router && !scrolled && !open ? styles.show_img : ''}  ${router && !scrolled && open && theme ? styles.show_img : ''} ${router && scrolled && theme ? styles.show_img : ''} ${router && scrolled && !theme ? styles.hide_img : ''} ${!router && theme ? styles.show_img : styles.hide_img}`}
 					/>
 					<Image
 						src='/logo-black.svg'
 						alt='Logo Quickbet Movies'
 						width={313}
 						height={68}
-						className={`
-              ${router && !scrolled && open && !theme && styles.show_img}
-              ${router && scrolled && !theme && styles.show_img}
-              ${!router && !theme ? styles.show_img : styles.hide_img}
-            `}
+						className={`${router && !scrolled && open && !theme ? styles.show_img : ''} ${router && scrolled && !theme ? styles.show_img : ''} ${!router && !theme ? styles.show_img : styles.hide_img}`}
 					/>
 				</Link>
 				<button
