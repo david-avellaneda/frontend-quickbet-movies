@@ -184,6 +184,22 @@
 	filter: invert(1);
 }
 
+.config button svg {
+	fill: #fff;
+}
+
+[data-theme='dark'] .config button svg {
+	fill: #000;
+}
+
+.scrolled .config button svg {
+	fill: #fff;
+}
+
+[data-theme='dark'] .scrolled .config button svg {
+	fill: #000;
+}
+
 /* Tablet */
 
 @media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
@@ -328,14 +344,6 @@
 	}
 
 	.config button svg {
-		filter: invert(0);
-	}
-
-	.scrolled .config button svg {
-		filter: invert(1);
-	}
-
-	[data-theme='dark'] .scrolled .config button svg {
-		filter: invert(0);
+		fill: #000;
 	}
 }
