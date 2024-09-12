@@ -14,7 +14,7 @@ const CircleProgress = ({ percentage }: { percentage: number }): JSX.Element => 
 					if (entry.isIntersecting) {
 						setTimeout(() => {
 							setValuePercentage(percentage)
-						}, 500)
+						}, 300)
 						observer.disconnect()
 					}
 				})
@@ -52,7 +52,7 @@ const CircleProgress = ({ percentage }: { percentage: number }): JSX.Element => 
 					style={{ stroke: getColor(percentage) }}
 				/>
 			</svg>
-			<p>{percentage}%</p>
+			<p>{`${percentage}%`}</p>
 		</div>
 	)
 }
