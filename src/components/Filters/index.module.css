@@ -1,0 +1,26 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+@media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
+	.container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.container > div:first-child {
+		grid-column: 1/2;
+	}
+}
+
+@media (min-width: 1024px) {
+	.container {
+		flex-direction: row;
+	}
+
+	.container > div {
+		width: 30%;
+	}
+}
