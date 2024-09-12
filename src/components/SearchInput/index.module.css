@@ -1,0 +1,59 @@
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.container label {
+	width: fit-content;
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: var(--txt);
+	margin-block-end: 1.5rem;
+}
+
+.container_input {
+	width: 100%;
+	position: relative;
+}
+
+.container_input input {
+	width: 100%;
+	font-size: 1.5rem;
+	color: var(--txt);
+	background-color: var(--elements);
+	border-radius: 0.5rem 0.5rem 0 0;
+	border: none;
+	border-bottom: solid 2px rgba(0, 0, 0, 0.5);
+	padding: 2rem 6rem 2rem 2rem;
+	outline: none;
+	transition: all 0.2s ease-in-out;
+}
+
+[data-theme='dark'] .container_input input {
+	border-bottom: solid 2px rgba(255, 255, 255, 0.5);
+}
+
+.container_input input:focus {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+[data-theme='dark'] .container_input input:focus {
+	border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.container_input input::placeholder {
+	font-size: 1.5rem;
+}
+
+.container_input svg {
+	position: absolute;
+	width: 2.5rem;
+	top: 50%;
+	right: 2rem;
+	transform: translateY(-50%);
+}
+
+[data-theme='dark'] .container_input svg {
+	filter: invert(1);
+}
