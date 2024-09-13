@@ -93,6 +93,7 @@
 .not_found {
 	font-size: 1.8rem;
 	color: var(--txt);
+	text-align: center;
 }
 
 @media (min-width: 1024px) {
