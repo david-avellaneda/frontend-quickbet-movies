@@ -67,13 +67,3 @@ svg {
 		transition: none !important;
 	}
 }
-
-.main {
-	padding-block: 10rem 6rem;
-}
-
-.section {
-	width: var(--content-width);
-	margin: 0 auto;
-	padding-block: 4rem 2rem;
-}
