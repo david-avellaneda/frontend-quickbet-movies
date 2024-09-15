@@ -2,7 +2,7 @@ import styles from './index.module.css'
 import { MovieListResponse } from '@/interfaces/movies'
 import Link from 'next/link'
 import MovieCard from '../MovieCard'
-import fetchData_ISR from '@/helpers/fetchData_ISR'
+import { initialMovieListResponse, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
 
 interface InitialMoviesProps {
 	title: string
@@ -13,8 +13,24 @@ interface InitialMoviesProps {
 	err_msg?: string
 }
 
+const fetchMovies = async (endpoint: string): Promise<MovieListResponse> => {
+	try {
+		const res = await fetch(`https://api.themoviedb.org/3/${endpoint}`, {
+			...TMDB_API_OPTIONS,
+			next: { revalidate: 172800 } // 48 hours
+		})
+
+		if (!res.ok) throw new Error('There was an error retrieving the data')
+
+		const data: MovieListResponse = await res.json()
+		return data
+	} catch (error) {
+		return { ...initialMovieListResponse, err: true, err_msg: `${error}` }
+	}
+}
+
 const InitialMovies = async ({ title, pageLink, endpoint }: InitialMoviesProps) => {
-	const movies: MovieListResponse = await fetchData_ISR(endpoint)
+	const movies: MovieListResponse = await fetchMovies(endpoint)
 
 	return (
 		<div className={styles.container}>
