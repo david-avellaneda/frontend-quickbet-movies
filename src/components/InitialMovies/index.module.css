@@ -1,0 +1,75 @@
+.container {
+	width: 100%;
+}
+
+.container h2 {
+	font-size: 2.5rem;
+	color: var(--txt);
+	font-family: 'IBM Plex Sans', sans-serif;
+	margin-block-end: 4rem;
+}
+
+.container h2 a {
+	color: var(--txt);
+}
+
+.movies {
+	display: flex;
+	gap: 2rem;
+	overflow-x: scroll;
+}
+
+.movies::-webkit-scrollbar {
+	height: 0.8rem;
+}
+
+.movies::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+
+.movies::-webkit-scrollbar-thumb {
+	background-color: var(--elements);
+	border-radius: var(--border-radius-scrollbar);
+	border: 1px solid var(--border-scrollbar);
+}
+
+.view_more {
+	width: 25rem;
+	flex: 0 0 25rem;
+	height: 50rem;
+	background-color: var(--elements);
+	border-radius: 1rem;
+	padding-inline: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.view_more p {
+	font-size: 2.5rem;
+	text-align: center;
+	font-weight: 600;
+	color: var(--txt);
+	margin-block-end: 3rem;
+}
+
+.view_more a {
+	width: 8rem;
+	height: 4rem;
+	font-size: 2rem;
+	color: #000;
+	font-weight: 500;
+	border-radius: 0.5rem;
+	background-color: var(--primary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block-end: 0.1rem;
+	transition: transform 0.3s ease-in-out;
+}
+
+.error {
+	font-size: 1.8rem;
+	color: #dc3545;
+}

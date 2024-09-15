@@ -27,7 +27,7 @@ const MovieCard = ({ movie }: { movie: MovieDetails }): JSX.Element => {
 						className={styles.no_img}
 					/>
 				)}
-				{poster_path !== null && !imgError && (
+				{poster_path !== null && (
 					<Image
 						src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
 						alt={`${title}`}

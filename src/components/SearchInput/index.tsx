@@ -4,11 +4,11 @@ import { IoSearchOutline } from 'react-icons/io5'
 import styles from './index.module.css'
 import { useContext, useEffect } from 'react'
 import FilterContext from '@/contexts/FilterContext'
-import { fetchMovieDetails, initialMovieListResponse } from '@/helpers/fetchMovieDetails'
+import { fetchMovieDetails } from '@/helpers/fetchMovieDetails'
 import { MovieListResponse } from '@/interfaces/movies'
 
 const SearchInput = (): JSX.Element => {
-	const { searchMovie, setSearchMovie, selectedGenre, setMovies, page } = useContext(FilterContext)
+	const { searchMovie, setSearchMovie, selectedGenre, setMovies } = useContext(FilterContext)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const movie = event.target.value.replace(/\s+/g, ' ')
@@ -18,28 +18,24 @@ const SearchInput = (): JSX.Element => {
 	useEffect(() => {
 		const fetchMovies = async () => {
 			const movies = await fetchMovieDetails(
-				`search/movie?query=${searchMovie.toLowerCase().trim()}&page=${page}`
+				`search/movie?query=${searchMovie.toLowerCase().trim()}&page=1`
 			)
 			if (searchMovie.trim() !== '' && selectedGenre === 0) {
 				setMovies(movies)
-			}
-			if (searchMovie.trim() !== '' && selectedGenre !== 0) {
-				const filteredMovies =
-					searchMovie.trim() !== '' &&
-					selectedGenre !== 0 &&
-					movies.results.filter(
-						(movie) => movie.genre_ids && movie.genre_ids.includes(selectedGenre)
-					)
+			} else if (searchMovie.trim() !== '' && selectedGenre !== 0) {
+				const filteredMovies = movies.results.filter(
+					(movie) => movie.genre_ids && movie.genre_ids.includes(selectedGenre)
+				)
 				const moviesFilteredGyGenre: MovieListResponse = {
-					...initialMovieListResponse,
-					results: filteredMovies || []
+					...movies,
+					results: filteredMovies
 				}
 				setMovies(moviesFilteredGyGenre)
 			}
 		}
 
-		fetchMovies()
-	}, [searchMovie, selectedGenre, setMovies, page])
+		searchMovie.trim() !== '' && fetchMovies()
+	}, [searchMovie, selectedGenre, setMovies])
 
 	return (
 		<div className={styles.container}>

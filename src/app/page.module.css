@@ -1,0 +1,14 @@
+.container {
+	width: var(--content-width);
+	display: flex;
+	flex-direction: column;
+	gap: 6rem;
+	margin: 0 auto;
+	padding-block: 4rem 6rem;
+}
+
+.initialMovies {
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+}

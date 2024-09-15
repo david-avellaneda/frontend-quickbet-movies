@@ -17,14 +17,6 @@ interface MovieListResponse {
 	err_msg?: string
 }
 
-interface MovieListProps {
-	title: string
-	classname: string
-	pageLink?: string
-	endpoint?: string
-	movies?: MovieListResponse
-}
-
 interface MovieDetails {
 	id: number
 	backdrop_path?: string
@@ -35,4 +27,4 @@ interface MovieDetails {
 	genre_ids?: number[]
 }
 
-export type { MovieResponse, MovieError, MovieListResponse, MovieListProps, MovieDetails }
+export type { MovieResponse, MovieError, MovieListResponse, MovieDetails }

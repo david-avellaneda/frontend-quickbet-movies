@@ -2,7 +2,7 @@
 
 import { initialMovieListResponse } from '@/helpers/fetchMovieDetails'
 import { MovieListResponse } from '@/interfaces/movies'
-import { createContext, Dispatch, SetStateAction, useState } from 'react'
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react'
 
 interface FilterContextType {
 	searchMovie: string
@@ -11,7 +11,6 @@ interface FilterContextType {
 	setSelectedGenre: Dispatch<SetStateAction<number>>
 	movies: MovieListResponse
 	setMovies: Dispatch<SetStateAction<MovieListResponse>>
-	page: number
 }
 
 const FilterContext = createContext<FilterContextType>({
@@ -20,8 +19,7 @@ const FilterContext = createContext<FilterContextType>({
 	selectedGenre: 0,
 	setSelectedGenre: () => {},
 	movies: initialMovieListResponse,
-	setMovies: () => {},
-	page: 1
+	setMovies: () => {}
 })
 
 export default FilterContext
@@ -29,13 +27,11 @@ export default FilterContext
 export const FilterProvider = ({
 	children
 }: Readonly<{
-	children: React.ReactNode
-}>): JSX.Element => {
+	children: ReactNode
+}>) => {
 	const [searchMovie, setSearchMovie] = useState('')
 	const [selectedGenre, setSelectedGenre] = useState(0)
 	const [movies, setMovies] = useState(initialMovieListResponse)
-
-	const page = 1
 
 	return (
 		<FilterContext.Provider
@@ -45,8 +41,7 @@ export const FilterProvider = ({
 				selectedGenre,
 				setSelectedGenre,
 				movies,
-				setMovies,
-				page
+				setMovies
 			}}
 		>
 			{children}

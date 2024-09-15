@@ -3,7 +3,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 import styles from './index.module.css'
-import { fetchMovieDetails, initialMovieListResponse } from '@/helpers/fetchMovieDetails'
+import { fetchMovieDetails } from '@/helpers/fetchMovieDetails'
 import FilterContext from '@/contexts/FilterContext'
 import { Genre, GenreResponse } from '@/interfaces/genres'
 import { fetchGenresMovie, initialGenres } from '@/helpers/fetchGenres'
@@ -22,11 +22,12 @@ const SelectGenre = (): JSX.Element => {
 
 	useEffect(() => {
 		const fetchMovies = async () => {
-			const movies = await fetchMovieDetails(`discover/movie?with_genres=${selectedGenre}`)
+			const movies = await fetchMovieDetails(`discover/movie?with_genres=${selectedGenre}&page=1`)
 			setMovies(movies)
 		}
-		searchMovie === '' && selectedGenre !== 0 ? fetchMovies() : setMovies(initialMovieListResponse)
-	}, [searchMovie, selectedGenre, setMovies])
+
+		searchMovie === '' && selectedGenre !== 0 && !isOpen && fetchMovies()
+	}, [searchMovie, selectedGenre, setMovies, isOpen])
 
 	useEffect(() => {
 		const fetchgenres = async (): Promise<void> => {

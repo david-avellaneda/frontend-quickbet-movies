@@ -6,98 +6,37 @@
 	font-size: 2.5rem;
 	color: var(--txt);
 	font-family: 'IBM Plex Sans', sans-serif;
+	text-align: center;
 	margin-block-end: 4rem;
 }
 
-.container h2 a {
-	color: var(--txt);
-}
-
 .movies {
+	min-height: 200vh;
 	display: flex;
-	gap: 2rem;
-}
-
-.scroll_x > div {
-	overflow-x: scroll;
-}
-
-.scroll_x > div::-webkit-scrollbar {
-	height: 1rem;
-}
-
-.scroll_x > div::-webkit-scrollbar-track {
-	background: var(--bg);
-}
-
-.scroll_x > div::-webkit-scrollbar-thumb {
-	background-color: var(--elements);
-	border-radius: var(--border-radius-scrollbar);
-	border: 1px solid var(--border-scrollbar);
-}
-
-.scroll_y {
-	margin: 0 auto;
-}
-
-.scroll_y h2 {
-	text-align: center;
-}
-
-.scroll_y > div {
 	flex-wrap: wrap;
+	gap: 2rem;
+	margin: 0 auto;
 	justify-content: center;
 }
 
-.view_more {
-	width: 25rem;
-	flex: 0 0 25rem;
-	height: 50rem;
-	background-color: var(--elements);
-	border-radius: 1rem;
-	padding-inline: 1.5rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.moviesFiltered {
+	min-height: auto;
 }
 
-.view_more p {
-	font-size: 2.5rem;
-	text-align: center;
-	font-weight: 600;
-	color: var(--txt);
-	margin-block-end: 3rem;
-}
-
-.view_more a {
-	width: 8rem;
-	height: 4rem;
-	font-size: 2rem;
-	color: #000;
-	font-weight: 500;
-	border-radius: 0.5rem;
-	background-color: var(--primary);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-block-end: 0.1rem;
-	transition: transform 0.3s ease-in-out;
+.moviesError {
+	min-height: 20vh;
 }
 
 .error {
+	height: fit-content;
 	font-size: 1.8rem;
 	color: #dc3545;
-}
-
-.not_found {
-	font-size: 1.8rem;
-	color: var(--txt);
 	text-align: center;
 }
 
-@media (min-width: 1024px) {
-	.view_more a:hover {
-		transform: scale(1.01);
-	}
+.notFound {
+	height: fit-content;
+	font-size: 1.8rem;
+	color: var(--txt);
+	text-align: center;
 }
