@@ -11,6 +11,8 @@ interface FilterContextType {
 	setSelectedGenre: Dispatch<SetStateAction<number>>
 	movies: MovieListResponse
 	setMovies: Dispatch<SetStateAction<MovieListResponse>>
+	page: number
+	setPage: Dispatch<SetStateAction<number>>
 }
 
 const FilterContext = createContext<FilterContextType>({
@@ -19,7 +21,9 @@ const FilterContext = createContext<FilterContextType>({
 	selectedGenre: 0,
 	setSelectedGenre: () => {},
 	movies: initialMovieListResponse,
-	setMovies: () => {}
+	setMovies: () => {},
+	page: 1,
+	setPage: () => {}
 })
 
 export default FilterContext
@@ -32,6 +36,7 @@ export const FilterProvider = ({
 	const [searchMovie, setSearchMovie] = useState('')
 	const [selectedGenre, setSelectedGenre] = useState(0)
 	const [movies, setMovies] = useState(initialMovieListResponse)
+	const [page, setPage] = useState(1)
 
 	return (
 		<FilterContext.Provider
@@ -41,7 +46,9 @@ export const FilterProvider = ({
 				selectedGenre,
 				setSelectedGenre,
 				movies,
-				setMovies
+				setMovies,
+				page,
+				setPage
 			}}
 		>
 			{children}

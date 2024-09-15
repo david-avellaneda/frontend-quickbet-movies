@@ -3,14 +3,12 @@
 import { MovieDetails, MovieListResponse } from '@/interfaces/movies'
 import MovieCard from '../MovieCard'
 import styles from './index.module.css'
-import { RefObject, useContext, useEffect, useRef, useState } from 'react'
+import { RefObject, useContext, useEffect, useRef } from 'react'
 import { fetchMovieDetails } from '@/helpers/fetchMovieDetails'
 import FilterContext from '@/contexts/FilterContext'
 
-const MovieList = () => {
-	const { searchMovie, selectedGenre, movies, setMovies } = useContext(FilterContext)
-
-	const [page, setPage] = useState(1)
+const MovieList = ({ title = 'Search results' }: { title?: string }) => {
+	const { searchMovie, selectedGenre, movies, setMovies, page, setPage } = useContext(FilterContext)
 
 	const divRef = useRef<HTMLDivElement | null>(null)
 
@@ -101,13 +99,13 @@ const MovieList = () => {
 		} else if (searchMovie.trim() !== '' && selectedGenre !== 0 && movies.page <= 3) {
 			return observeElement(divRef)
 		}
-	}, [searchMovie, selectedGenre, movies, setMovies, page])
+	}, [searchMovie, selectedGenre, movies, setMovies, page, setPage])
 
 	return (
 		<>
 			{searchMovie.trim() !== '' || selectedGenre !== 0 ? (
 				<div className={styles.container}>
-					<h2>Search results</h2>
+					<h2>{title}</h2>
 					<div
 						className={`${styles.movies} ${searchMovie.trim() !== '' ? styles.moviesFiltered : ''} ${movies.err || movies.results.length === 0 ? styles.moviesError : ''}`}
 					>

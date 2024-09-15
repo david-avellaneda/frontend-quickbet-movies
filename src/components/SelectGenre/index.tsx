@@ -13,7 +13,8 @@ const SelectGenre = (): JSX.Element => {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 	const selectRef = useRef<HTMLDivElement>(null)
 
-	const { searchMovie, selectedGenre, setSelectedGenre, setMovies } = useContext(FilterContext)
+	const { searchMovie, selectedGenre, setSelectedGenre, setMovies, setPage } =
+		useContext(FilterContext)
 
 	const handleSelect = (id: number): void => {
 		setSelectedGenre(id)
@@ -24,10 +25,11 @@ const SelectGenre = (): JSX.Element => {
 		const fetchMovies = async () => {
 			const movies = await fetchMovieDetails(`discover/movie?with_genres=${selectedGenre}&page=1`)
 			setMovies(movies)
+			setPage(1)
 		}
 
 		searchMovie === '' && selectedGenre !== 0 && !isOpen && fetchMovies()
-	}, [searchMovie, selectedGenre, setMovies, isOpen])
+	}, [searchMovie, selectedGenre, setMovies, setPage, isOpen])
 
 	useEffect(() => {
 		const fetchgenres = async (): Promise<void> => {
