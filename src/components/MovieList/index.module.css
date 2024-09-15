@@ -1,5 +1,7 @@
 .container {
 	width: 100%;
+	display: none;
+	visibility: hidden;
 }
 
 .container h2 {
@@ -11,20 +13,12 @@
 }
 
 .movies {
-	min-height: 200vh;
+	min-height: 20vh;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 2rem;
 	margin: 0 auto;
 	justify-content: center;
-}
-
-.moviesFiltered {
-	min-height: auto;
-}
-
-.moviesError {
-	min-height: 20vh;
 }
 
 .error {
