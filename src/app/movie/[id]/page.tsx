@@ -1,11 +1,13 @@
 import CircleProgress from '@/components/CircleProgress'
 import FavoriteBtn from '@/components/FavoriteBtn'
-import { err_msg, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
+import { err_msg, initialMovieListResponse, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './page.module.css'
 import { CiPlay1 } from 'react-icons/ci'
 import { formatDate } from '@/helpers/formatDate'
+import MovieRecommendation from '@/components/MovieRecommendation'
+import { MovieDetails, MovieListResponse } from '@/interfaces/movies'
 
 interface MoviePageProps {
 	params: {
@@ -98,10 +100,29 @@ const fetchTrailer = async (id: string) => {
 	}
 }
 
+const fetchRecommendations = async (id: string) => {
+	try {
+		const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`, {
+			...TMDB_API_OPTIONS,
+			next: { revalidate: 172800 } // 48 hours
+		})
+
+		if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`)
+
+		const data: MovieListResponse = await res.json()
+
+		return { ...data, results: data.results.slice(0, 10) }
+	} catch {
+		return { ...initialMovieListResponse, err: true, err_msg }
+	}
+}
+
 export default async function MoviePage({ params }: MoviePageProps) {
 	const movie = await fetchMovieDetails(params.id)
 
 	const trailer = await fetchTrailer(params.id)
+
+	const recommendations = await fetchRecommendations(params.id)
 
 	const {
 		backdrop_path,
@@ -179,6 +200,20 @@ export default async function MoviePage({ params }: MoviePageProps) {
 							{genres && genres.map((genre) => <div key={genre.id}>{genre.name}</div>)}
 						</div>
 					</div>
+				</div>
+			</section>
+			<section className={styles.recommendations}>
+				<h2>Recommendations</h2>
+				<div>
+					{!recommendations.err &&
+						recommendations.results.map((e: MovieDetails) => (
+							<MovieRecommendation
+								key={e.id}
+								poster_path={e.poster_path}
+								id={`${e.id}`}
+								title={e.title}
+							/>
+						))}
 				</div>
 			</section>
 		</main>
