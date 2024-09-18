@@ -225,6 +225,9 @@ export default async function MoviePage({ params }: MoviePageProps) {
 							{!recommendations.err && recommendations.results.length === 0 && (
 								<p>Recommended movies not found</p>
 							)}
+							{recommendations.err && recommendations.err_msg && (
+								<p className='error'>{recommendations.err_msg}</p>
+							)}
 						</div>
 					</section>
 				</>
