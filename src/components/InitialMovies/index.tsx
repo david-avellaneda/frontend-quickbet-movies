@@ -50,7 +50,7 @@ const InitialMovies = async ({ title, pageLink, endpoint }: InitialMoviesProps) 
 						<Link href={`/${pageLink}`}>Go</Link>
 					</div>
 				)}
-				{movies?.err && <p className={styles.error}>{movies.err_msg}</p>}
+				{movies?.err && <p className='error'>{movies.err_msg}</p>}
 			</div>
 		</div>
 	)

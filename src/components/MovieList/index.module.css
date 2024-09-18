@@ -19,13 +19,6 @@
 	justify-content: center;
 }
 
-.error {
-	height: fit-content;
-	font-size: 1.8rem;
-	color: #dc3545;
-	text-align: center;
-}
-
 .notFound {
 	height: fit-content;
 	font-size: 1.8rem;

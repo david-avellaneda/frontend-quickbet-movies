@@ -68,8 +68,3 @@
 	padding-block-end: 0.1rem;
 	transition: transform 0.3s ease-in-out;
 }
-
-.error {
-	font-size: 1.8rem;
-	color: #dc3545;
-}

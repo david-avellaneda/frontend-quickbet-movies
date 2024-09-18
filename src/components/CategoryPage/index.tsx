@@ -45,7 +45,7 @@ const CategoryPage = async ({ title, endpoint }: CategoryPageProps) => {
 			<h1>{title}</h1>
 			<div className={styles.movies}>
 				{movies?.results.map((movie: MovieDetails) => <MovieCard key={movie.id} movie={movie} />)}
-				{movies?.err && <p className={styles.error}>{movies.err_msg}</p>}
+				{movies?.err && <p className='error'>{movies.err_msg}</p>}
 			</div>
 		</main>
 	)

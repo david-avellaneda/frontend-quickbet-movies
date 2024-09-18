@@ -119,9 +119,7 @@ const fetchRecommendations = async (id: string) => {
 
 export default async function MoviePage({ params }: MoviePageProps) {
 	const movie = await fetchMovieDetails(params.id)
-
 	const trailer = await fetchTrailer(params.id)
-
 	const recommendations = await fetchRecommendations(params.id)
 
 	const {
@@ -136,86 +134,108 @@ export default async function MoviePage({ params }: MoviePageProps) {
 	} = movie
 
 	return (
-		<main className={`transparent_movie_page ${styles.container}`}>
-			<section className={styles.containerDetails}>
-				{backdrop_path !== null && (
-					<>
-						<Image
-							src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-							alt={title}
-							width={1300}
-							height={731}
-							className={styles.backdrop}
-						/>
-						<div className={styles.gradient}></div>
-					</>
-				)}
-				<div className={styles.details}>
-					<div className={styles.poster}>
-						<div className={poster_path === null ? styles.noImg : ''}>
-							{poster_path === null && (
-								<Image src='/photos-bro.svg' alt='No image available' width={200} height={225} />
-							)}
-							{poster_path !== null && (
+		<main
+			className={`${styles.container} ${!movie.err ? 'transparent_movie_page' : styles.notFound}`}
+		>
+			{!movie.err && (
+				<>
+					<section className={styles.containerDetails}>
+						{backdrop_path !== null && (
+							<>
 								<Image
-									src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
+									src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
 									alt={title}
-									width={300}
-									height={500}
+									width={1300}
+									height={731}
+									className={styles.backdrop}
 								/>
+								<div className={styles.gradient}></div>
+							</>
+						)}
+						<div className={styles.details}>
+							<div className={styles.poster}>
+								<div className={poster_path === null ? styles.noImg : ''}>
+									{poster_path === null && (
+										<Image
+											src='/photos-bro.svg'
+											alt='No image available'
+											width={200}
+											height={225}
+										/>
+									)}
+									{poster_path !== null && (
+										<Image
+											src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
+											alt={title}
+											width={300}
+											height={500}
+										/>
+									)}
+								</div>
+								{trailer.link && (
+									<Link href={trailer.link} target='_blank'>
+										Official Trailer
+										<CiPlay1 />
+									</Link>
+								)}
+								{trailer.err && trailer.err_msg === '0' && <p>Trailer not found</p>}
+								{trailer.err && trailer.err_msg !== '0' && <p>{trailer.err_msg}</p>}
+							</div>
+							<div className={styles.info}>
+								<div className={styles.containerTitle}>
+									<h1 className={styles.title}>{title}</h1>
+									<div className={styles.date}>
+										<p>{release_date}</p>
+										<p>{runtime}</p>
+									</div>
+								</div>
+								<div className={styles.overview}>
+									<p>Overview:</p>
+									<p>{overview}</p>
+								</div>
+								<div className={styles.score}>
+									<div className={styles.percentage}>
+										<CircleProgress percentage={vote_average} />
+										<p>
+											Users <br />
+											Scrore
+										</p>
+									</div>
+									<FavoriteBtn />
+								</div>
+								<div className={styles.genres}>
+									{genres && genres.map((genre) => <div key={genre.id}>{genre.name}</div>)}
+								</div>
+							</div>
+						</div>
+					</section>
+					<section className={styles.recommendations}>
+						<h2>Recommendations</h2>
+						<div>
+							{!recommendations.err &&
+								recommendations.results.length > 0 &&
+								recommendations.results.map((e: MovieDetails) => (
+									<MovieRecommendation
+										key={e.id}
+										poster_path={e.poster_path}
+										id={`${e.id}`}
+										title={e.title}
+									/>
+								))}
+							{!recommendations.err && recommendations.results.length === 0 && (
+								<p>Recommended movies not found</p>
 							)}
 						</div>
-						{trailer.link && (
-							<Link href={trailer.link} target='_blank'>
-								Official Trailer
-								<CiPlay1 />
-							</Link>
-						)}
-						{trailer.err && trailer.err_msg === '0' && <p>Trailer not found</p>}
-						{trailer.err && trailer.err_msg !== '0' && <p>{trailer.err_msg}</p>}
-					</div>
-					<div className={styles.info}>
-						<div className={styles.containerTitle}>
-							<h1 className={styles.title}>{title}</h1>
-							<div className={styles.date}>
-								<p>{release_date}</p>
-								<p>{runtime}</p>
-							</div>
-						</div>
-						<div className={styles.overview}>
-							<p>Overview:</p>
-							<p>{overview}</p>
-						</div>
-						<div className={styles.score}>
-							<div className={styles.percentage}>
-								<CircleProgress percentage={vote_average} />
-								<p>
-									Users <br />
-									Scrore
-								</p>
-							</div>
-							<FavoriteBtn />
-						</div>
-						<div className={styles.genres}>
-							{genres && genres.map((genre) => <div key={genre.id}>{genre.name}</div>)}
-						</div>
-					</div>
-				</div>
-			</section>
-			<section className={styles.recommendations}>
-				<h2>Recommendations</h2>
-				<div>
-					{!recommendations.err &&
-						recommendations.results.map((e: MovieDetails) => (
-							<MovieRecommendation
-								key={e.id}
-								poster_path={e.poster_path}
-								id={`${e.id}`}
-								title={e.title}
-							/>
-						))}
-				</div>
-			</section>
+					</section>
+				</>
+			)}
+			{movie.err && (
+				<>
+					<Image src='/film-rolls.svg' alt='Film rolls' width={500} height={586} />
+					<p>Movie not found</p>
+					<Link href='/'>Go to home</Link>
+				</>
+			)}
 		</main>
 	)
 }

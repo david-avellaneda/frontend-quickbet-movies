@@ -2,6 +2,72 @@
 	padding-block: 7rem 8rem;
 }
 
+.notFound,
+.error {
+	width: var(--content-width);
+	height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+}
+
+.notFound {
+	width: 70%;
+	max-width: 40rem;
+}
+
+.notFound p,
+.notFound a {
+	font-size: 2rem;
+	font-weight: 700;
+	text-align: center;
+	color: var(--txt);
+}
+
+.notFound a {
+	width: fit-content;
+	font-size: 1.7rem;
+	background-color: var(--primary);
+	padding: 1.5rem 3rem;
+	color: rgba(52, 52, 52, 1);
+	border-radius: 0.5rem;
+}
+
+@media (min-width: 600px) {
+	.notFound {
+		width: 40%;
+	}
+
+	.notFound p {
+		font-size: 2.2rem;
+	}
+}
+
+@media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
+	.notFound {
+		width: 60%;
+	}
+
+	.notFound p {
+		font-size: 3rem;
+	}
+
+	.notFound a {
+		font-size: 2.6rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.notFound {
+		width: 40%;
+		max-width: 35rem;
+		padding-block: 7rem 8rem !important;
+	}
+}
+
 .containerDetails {
 	position: relative;
 }
@@ -189,6 +255,12 @@
 	margin: 0 auto;
 }
 
+.recommendations > div > p {
+	width: 100%;
+	font-size: 1.5rem;
+	color: var(--txt);
+}
+
 @media (min-width: 650px) and (max-width: 1024px) and (min-height: 950px) {
 	.container {
 		padding-block: 8rem 8rem;
@@ -263,11 +335,57 @@
 	.genres div {
 		font-size: 2rem;
 	}
+
+	.recommendations h2 {
+		font-size: 2.2rem;
+	}
+
+	.recommendations > div > p {
+		font-size: 2rem;
+	}
 }
 
 @media (min-width: 1024px) {
 	.poster {
 		width: 40%;
+	}
+
+	.poster a,
+	.poster p {
+		padding: 1.2rem;
+	}
+
+	.poster a {
+		transition: transform 0.1s ease;
+	}
+
+	.poster a:hover {
+		transform: scale(1.02);
+	}
+
+	.containerTitle {
+		width: fit-content;
+	}
+
+	.title {
+		font-size: 4rem;
+	}
+
+	.data p {
+		font-size: 1.6rem;
+	}
+
+	.date p:first-child {
+		margin-inline-end: 4rem;
+	}
+
+	.overview p:first-child {
+		font-size: 2.5rem;
+	}
+
+	.overview p:nth-child(2) {
+		font-size: 1.6rem;
+		line-height: 3rem;
 	}
 }
 
@@ -313,48 +431,10 @@
 		background-color: #0c0c0c;
 	}
 
-	.poster a,
-	.poster p {
-		padding: 1.2rem;
-	}
-
-	.poster a {
-		transition: transform 0.1s ease;
-	}
-
-	.poster a:hover {
-		transform: scale(1.02);
-	}
-
 	.info {
 		width: 65%;
 		max-width: 75rem;
 		height: fit-content;
-	}
-
-	.containerTitle {
-		width: fit-content;
-	}
-
-	.title {
-		font-size: 4rem;
-	}
-
-	.data p {
-		font-size: 1.6rem;
-	}
-
-	.date p:first-child {
-		margin-inline-end: 4rem;
-	}
-
-	.overview p:first-child {
-		font-size: 2.5rem;
-	}
-
-	.overview p:nth-child(2) {
-		font-size: 1.6rem;
-		line-height: 3rem;
 	}
 
 	.title,

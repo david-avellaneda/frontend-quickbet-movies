@@ -31,7 +31,7 @@ const MovieList = ({ title = 'Search results' }: { title?: string }) => {
 						{!movies.err && movies.results.length === 0 && (
 							<p className={styles.notFound}>{`No results found for the movie "${searchMovie}"`}</p>
 						)}
-						{movies?.err && <p className={styles.error}>{movies.err_msg}</p>}
+						{movies?.err && <p className='error'>{movies.err_msg}</p>}
 					</div>
 					<div></div>
 				</div>
