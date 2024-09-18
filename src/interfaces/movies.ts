@@ -1,13 +1,3 @@
-interface MovieResponse {
-	loading: boolean
-	data: MovieListResponse
-}
-
-interface MovieError {
-	error: boolean
-	message: string
-}
-
 interface MovieListResponse {
 	page: number
 	results: MovieDetails[]
@@ -21,10 +11,10 @@ interface MovieDetails {
 	id: number
 	backdrop_path?: string
 	title: string
-	release_date: Date
+	release_date: string
 	vote_average: number
 	poster_path: string
 	genre_ids?: number[]
 }
 
-export type { MovieResponse, MovieError, MovieListResponse, MovieDetails }
+export type { MovieListResponse, MovieDetails }

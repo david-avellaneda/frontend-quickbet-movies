@@ -9,17 +9,28 @@ import { usePathname } from 'next/navigation'
 
 const Navbar = (): JSX.Element => {
 	const [theme, setTheme] = useState(false)
+	const [menuTransparent, setMenuTransparent] = useState(false)
 	const [scrolled, setScrolled] = useState(false)
 	const [open, setOpen] = useState<undefined | boolean>(undefined)
 
-	const router = usePathname() === '/'
+	const pathname = usePathname()
 
 	const handleMenu = (): void => setOpen(!open)
 	const handleClick = (): void => setOpen(false)
 
 	useEffect(() => {
+		if (document.querySelector('.transparent')) {
+			setMenuTransparent(true)
+		} else if (document.querySelector('.transparent_movie_page') && window.innerWidth >= 1100) {
+			setMenuTransparent(true)
+		} else {
+			setMenuTransparent(false)
+		}
+	}, [pathname])
+
+	useEffect(() => {
 		function handleScroll() {
-			window.scrollY > 120 ? setScrolled(true) : setScrolled(false)
+			window.scrollY > 30 ? setScrolled(true) : setScrolled(false)
 		}
 
 		window.addEventListener('scroll', handleScroll)
@@ -43,7 +54,7 @@ const Navbar = (): JSX.Element => {
 
 	return (
 		<header
-			className={`${styles.header} ${open ? styles.active : ''} ${router && scrolled ? styles.scrolled : ''} ${!router ? styles.scrolled : ''}`}
+			className={`${styles.header} ${open ? styles.active : ''} ${menuTransparent && scrolled ? styles.scrolled : ''} ${!menuTransparent ? styles.scrolled : ''}`}
 		>
 			<nav>
 				<Link href='/' className={styles.container_logo} onClick={handleClick}>
@@ -52,14 +63,14 @@ const Navbar = (): JSX.Element => {
 						alt='Logo Quickbet Movies'
 						width={313}
 						height={68}
-						className={`${router && !scrolled && !open ? styles.show_img : ''}  ${router && !scrolled && open && theme ? styles.show_img : ''} ${router && scrolled && theme ? styles.show_img : ''} ${router && scrolled && !theme ? styles.hide_img : ''} ${!router && theme ? styles.show_img : styles.hide_img}`}
+						className={`${menuTransparent && !scrolled && !open ? styles.show_img : ''}  ${menuTransparent && !scrolled && open && theme ? styles.show_img : ''} ${menuTransparent && scrolled && theme ? styles.show_img : ''} ${menuTransparent && scrolled && !theme ? styles.hide_img : ''} ${!menuTransparent && theme ? styles.show_img : styles.hide_img}`}
 					/>
 					<Image
 						src='/logo-black.svg'
 						alt='Logo Quickbet Movies'
 						width={313}
 						height={68}
-						className={`${router && !scrolled && open && !theme ? styles.show_img : ''} ${router && scrolled && !theme ? styles.show_img : ''} ${!router && !theme ? styles.show_img : styles.hide_img}`}
+						className={`${menuTransparent && !scrolled && open && !theme ? styles.show_img : ''} ${menuTransparent && scrolled && !theme ? styles.show_img : ''} ${!menuTransparent && !theme ? styles.show_img : styles.hide_img}`}
 					/>
 				</Link>
 				<button

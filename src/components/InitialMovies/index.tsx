@@ -2,7 +2,8 @@ import styles from './index.module.css'
 import { MovieListResponse } from '@/interfaces/movies'
 import Link from 'next/link'
 import MovieCard from '../MovieCard'
-import { initialMovieListResponse, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
+import { err_msg, initialMovieListResponse, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
+import { formatDate } from '@/helpers/formatDate'
 
 interface InitialMoviesProps {
 	title: string
@@ -20,12 +21,16 @@ const fetchMovies = async (endpoint: string): Promise<MovieListResponse> => {
 			next: { revalidate: 172800 } // 48 hours
 		})
 
-		if (!res.ok) throw new Error('There was an error retrieving the data')
-
 		const data: MovieListResponse = await res.json()
+
+		data.results = data.results.map((movie) => ({
+			...movie,
+			release_date: formatDate(movie.release_date)
+		}))
+
 		return data
-	} catch (error) {
-		return { ...initialMovieListResponse, err: true, err_msg: `${error}` }
+	} catch {
+		return { ...initialMovieListResponse, err: true, err_msg }
 	}
 }
 

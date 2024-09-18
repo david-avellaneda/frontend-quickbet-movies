@@ -7,7 +7,7 @@ import MovieList from '@/components/MovieList'
 
 export default function Home() {
 	return (
-		<main>
+		<main className='transparent'>
 			<PromotionalBanner />
 			<div className={styles.container}>
 				<FilterProvider>

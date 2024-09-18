@@ -50,13 +50,6 @@ export const FilterProvider = ({
 	const divRef = useRef<HTMLDivElement | null>(null)
 
 	useEffect(() => {
-		const containerMovieList = document.getElementById('movie_list')
-		searchMovie.trim() !== '' || selectedGenre !== 0
-			? containerMovieList?.classList.add('containerActive')
-			: containerMovieList?.classList.remove('containerActive')
-	}, [searchMovie, selectedGenre])
-
-	useEffect(() => {
 		const initialMoviesElement = document.getElementById('initial_movies')
 		if (initialMoviesElement) {
 			if (searchMovie.trim() === '' && selectedGenre === 0) {
@@ -76,18 +69,11 @@ export const FilterProvider = ({
 							const newMovies = await fetchMovieDetails(
 								`discover/movie?with_genres=${selectedGenre}&page=${page}`
 							)
-							const combinedMovies: MovieListResponse = {
-								...newMovies,
-								results: [
-									...movies.results,
-									...newMovies.results.filter(
-										(newMovie) =>
-											!movies.results.some((existingMovie) => existingMovie.id === newMovie.id)
-									)
-								]
-							}
 							setPage((prevPage) => prevPage + 1)
-							setMovies(combinedMovies)
+							setMovies({
+								...newMovies,
+								results: [...movies.results, ...newMovies.results]
+							})
 						}
 					}
 					if (searchMovie.trim() !== '') {
@@ -100,26 +86,15 @@ export const FilterProvider = ({
 								const filteredMovies = newMovies.results.filter(
 									(movie) => movie.genre_ids && movie.genre_ids.includes(selectedGenre)
 								)
-
-								const combinedMovies = [
-									...movies.results,
-									...filteredMovies.filter(
-										(newMovie) =>
-											!movies.results.some((existingMovie) => existingMovie.id === newMovie.id)
-									)
-								]
-
-								const moviesFilteredGyGenre: MovieListResponse = {
+								setMovies({
 									...newMovies,
-									results: combinedMovies
-								}
-								setMovies(moviesFilteredGyGenre)
+									results: [...movies.results, ...filteredMovies]
+								})
 							} else {
-								const combinedMovies: MovieListResponse = {
+								setMovies({
 									...newMovies,
 									results: [...movies.results, ...newMovies.results]
-								}
-								setMovies(combinedMovies)
+								})
 							}
 						}
 					}
@@ -159,7 +134,7 @@ export const FilterProvider = ({
 			}}
 		>
 			{children}
-			<div ref={divRef}></div>
+			{(searchMovie.trim() !== '' || selectedGenre !== 0) && <div ref={divRef}></div>}
 		</FilterContext.Provider>
 	)
 }

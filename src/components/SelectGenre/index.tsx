@@ -55,7 +55,7 @@ const SelectGenre = (): JSX.Element => {
 
 	return (
 		<div className={styles.container}>
-			<label htmlFor='genre'>Genres</label>
+			<p>Genres</p>
 			<div className={styles.custom_select} ref={selectRef}>
 				<div
 					className={styles.selected_option}

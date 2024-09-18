@@ -14,9 +14,7 @@ const ThemeToggleBtn = ({ theme, setTheme }: ThemeToggleBtnProps) => {
 	const handleThemeBtn = (): void => {
 		document.documentElement.classList.add('no-transition')
 		setTheme(!theme)
-		setTimeout(() => {
-			document.documentElement.classList.remove('no-transition')
-		}, 500)
+		setTimeout(() => document.documentElement.classList.remove('no-transition'), 500)
 	}
 
 	useEffect(() => {

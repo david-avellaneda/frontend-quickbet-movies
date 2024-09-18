@@ -15,17 +15,23 @@ const initialMovieListResponse: MovieListResponse = {
 	total_results: 0
 }
 
+const err_msg = 'There was an error retrieving the data'
+
 const fetchMovieDetails = async (endpoint: string): Promise<MovieListResponse> => {
 	try {
 		const res = await fetch(`https://api.themoviedb.org/3/${endpoint}`, TMDB_API_OPTIONS)
 
-		if (!res.ok) throw new Error('There was an error retrieving the data')
+		if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`)
 
 		const data: MovieListResponse = await res.json()
 		return data
-	} catch (error) {
-		return { ...initialMovieListResponse, err: true, err_msg: `${error}` }
+	} catch {
+		return {
+			...initialMovieListResponse,
+			err: true,
+			err_msg
+		}
 	}
 }
 
-export { TMDB_API_OPTIONS, initialMovieListResponse, fetchMovieDetails }
+export { TMDB_API_OPTIONS, initialMovieListResponse, err_msg, fetchMovieDetails }

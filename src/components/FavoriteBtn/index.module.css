@@ -1,4 +1,5 @@
 .btn {
+	height: fit-content;
 	outline: none;
 	background-color: transparent;
 	border: none;

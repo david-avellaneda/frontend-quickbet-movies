@@ -5,18 +5,22 @@ import CircleProgress from '../CircleProgress'
 import { MovieDetails } from '@/interfaces/movies'
 import styles from './index.module.css'
 import Link from 'next/link'
-import { formatDate } from '@/helpers/formatDate'
 import FavoriteBtn from '../FavoriteBtn'
-import { useState } from 'react'
 import { CiCircleAlert } from 'react-icons/ci'
+import { useState } from 'react'
 
 const MovieCard = ({ movie }: { movie: MovieDetails }): JSX.Element => {
 	const { id, title, release_date, vote_average, poster_path } = movie
 	const [imgError, setImgError] = useState(false)
 
+	const handleClick = (): void => {
+		document.documentElement.classList.add('no-transition')
+		setTimeout(() => document.documentElement.classList.remove('no-transition'), 100)
+	}
+
 	return (
 		<div className={styles.container}>
-			<Link href={`/movie/${id}`} className={styles.container_img}>
+			<Link href={`/movie/${id}`} className={styles.container_img} onClick={handleClick}>
 				{imgError && <CiCircleAlert />}
 				{poster_path === null && (
 					<Image
@@ -39,7 +43,7 @@ const MovieCard = ({ movie }: { movie: MovieDetails }): JSX.Element => {
 			</Link>
 			<div className={styles.details}>
 				<h3>{title}</h3>
-				<p>{formatDate(release_date)}</p>
+				<p>{release_date}</p>
 				<div className={styles.elements}>
 					<div className={styles.rating}>
 						<p>Rating</p>

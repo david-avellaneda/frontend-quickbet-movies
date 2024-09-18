@@ -62,11 +62,6 @@ svg {
 	transition: none !important;
 }
 
-.containerActive {
-	display: block !important;
-	visibility: visible !important;
-}
-
 @media (min-width: 1024px) {
 	.no-transition * {
 		transition: none !important;

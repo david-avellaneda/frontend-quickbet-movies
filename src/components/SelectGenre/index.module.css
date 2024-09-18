@@ -4,7 +4,7 @@
 	flex-direction: column;
 }
 
-.container label {
+.container > p {
 	width: fit-content;
 	font-size: 1.8rem;
 	font-weight: 700;
