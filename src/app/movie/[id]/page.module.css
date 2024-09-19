@@ -68,18 +68,20 @@
 	}
 }
 
-.containerDetails {
-	position: relative;
-}
-
 .backdrop {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	object-fit: cover;
+	top: 0;
+	left: 0;
 	filter: brightness(40%);
 	display: none;
-	visibility: hidden;
+	visibility: none;
+}
+
+.backdrop img {
+	height: 100%;
+	object-fit: cover;
 }
 
 .gradient {
@@ -408,6 +410,10 @@
 		visibility: visible;
 	}
 
+	.backdrop div > div {
+		background-color: #0c0c0c;
+	}
+
 	.details {
 		height: 80vh;
 		display: flex;
@@ -428,6 +434,13 @@
 
 	.poster > div {
 		height: 90%;
+	}
+
+	.noImg {
+		background-color: #0c0c0c;
+	}
+
+	.poster div div > div {
 		background-color: #0c0c0c;
 	}
 

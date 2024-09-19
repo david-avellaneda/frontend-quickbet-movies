@@ -12,28 +12,32 @@
 	height: 100%;
 }
 
-.container a img {
-	height: 85%;
+.container a > div:first-child {
+	height: 83%;
+}
+
+.container a > div img {
+	height: 100%;
 	object-fit: cover;
 	border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.container a svg {
-	width: 80%;
-	height: 85%;
+.container a > div svg {
+	width: 60%;
+	height: 100%;
 	display: block;
 	fill: var(--primary);
 	margin: 0 auto;
 }
 
-.container a > div {
-	height: 15%;
+.container a > div:nth-child(2) {
+	height: 17%;
 	display: flex;
 	align-items: center;
 	padding-inline: 1rem;
 }
 
-.container div p {
+.container a > div:nth-child(2) p {
 	width: 100%;
 	font-size: 1.5rem;
 	font-weight: 600;
@@ -41,7 +45,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	padding-block-end: 0.6rem;
+	padding-block-end: 0.3rem;
 }
 
 @media (min-width: 600px) {

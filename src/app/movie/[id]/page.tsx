@@ -8,6 +8,7 @@ import { CiPlay1 } from 'react-icons/ci'
 import { formatDate } from '@/helpers/formatDate'
 import MovieRecommendation from '@/components/MovieRecommendation'
 import { MovieDetails, MovieListResponse } from '@/interfaces/movies'
+import ImageUploader from '@/components/ImageUploader'
 
 interface MoviePageProps {
 	params: {
@@ -141,16 +142,10 @@ export default async function MoviePage({ params }: MoviePageProps) {
 				<>
 					<section className={styles.containerDetails}>
 						{backdrop_path !== null && (
-							<>
-								<Image
-									src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-									alt={title}
-									width={1300}
-									height={731}
-									className={styles.backdrop}
-								/>
+							<div className={styles.backdrop}>
+								<ImageUploader size='w1280' path={poster_path} alt={title} />
 								<div className={styles.gradient}></div>
-							</>
+							</div>
 						)}
 						<div className={styles.details}>
 							<div className={styles.poster}>
@@ -164,12 +159,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 										/>
 									)}
 									{poster_path !== null && (
-										<Image
-											src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
-											alt={title}
-											width={300}
-											height={500}
-										/>
+										<ImageUploader size='w500' path={poster_path} alt={title} />
 									)}
 								</div>
 								{trailer.link && (
