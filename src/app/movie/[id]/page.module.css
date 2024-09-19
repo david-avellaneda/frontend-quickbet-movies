@@ -121,6 +121,18 @@
 	margin-block-end: 2rem;
 }
 
+.poster div > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.poster div > div svg {
+	width: 60%;
+	padding-block-end: 3rem;
+	fill: var(--primary);
+}
+
 .poster img {
 	height: 100%;
 	object-fit: cover;
@@ -412,6 +424,14 @@
 
 	.backdrop div > div {
 		background-color: #0c0c0c;
+	}
+
+	.backdrop > div svg {
+		width: 10%;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+		fill: var(--primary);
 	}
 
 	.details {
