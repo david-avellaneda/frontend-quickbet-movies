@@ -17,7 +17,7 @@
 }
 
 .loaded {
-	display: none;
+	display: none !important;
 }
 
 .loader::before {
