@@ -9,6 +9,7 @@ import { formatDate } from '@/helpers/formatDate'
 import MovieRecommendation from '@/components/MovieRecommendation'
 import { MovieDetails, MovieListResponse } from '@/interfaces/movies'
 import ImageUploader from '@/components/ImageUploader'
+import { Metadata } from 'next'
 
 interface MoviePageProps {
 	params: {
@@ -41,7 +42,7 @@ const formatRuntime = (minutes: number): string => {
 }
 
 // Incremental Static Regeneration (ISR)
-const fetchMovieDetails = async (id: string) => {
+const getMovieDetails = async (id: string) => {
 	try {
 		const res = await fetch(`https://api.themoviedb.org/3/movie/${id}`, {
 			...TMDB_API_OPTIONS,
@@ -76,7 +77,7 @@ const fetchMovieDetails = async (id: string) => {
 	}
 }
 
-const fetchTrailer = async (id: string) => {
+const getTrailer = async (id: string) => {
 	try {
 		const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`, {
 			...TMDB_API_OPTIONS,
@@ -101,7 +102,7 @@ const fetchTrailer = async (id: string) => {
 	}
 }
 
-const fetchRecommendations = async (id: string) => {
+const getRecommendations = async (id: string) => {
 	try {
 		const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`, {
 			...TMDB_API_OPTIONS,
@@ -118,10 +119,18 @@ const fetchRecommendations = async (id: string) => {
 	}
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+	const movie = await getMovieDetails(params.id)
+	return {
+		title: movie.err ? 'Movie Not Found - Quickbet Movies' : `${movie.title} - Quickbet Movies`,
+		description: movie.err ? 'The movie you are looking for could not be found.' : movie.overview
+	}
+}
+
 export default async function MoviePage({ params }: MoviePageProps) {
-	const movie = await fetchMovieDetails(params.id)
-	const trailer = await fetchTrailer(params.id)
-	const recommendations = await fetchRecommendations(params.id)
+	const movie = await getMovieDetails(params.id)
+	const trailer = await getTrailer(params.id)
+	const recommendations = await getRecommendations(params.id)
 
 	const {
 		backdrop_path,
