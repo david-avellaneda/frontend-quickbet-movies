@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { Metadata } from 'next'
 import './globals.css'
 import WelcomeScreen from '@/components/WelcomeScreen'
