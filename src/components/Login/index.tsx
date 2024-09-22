@@ -58,7 +58,7 @@ const Login = ({
 		<section
 			className={`${styles.container} ${styles[customClass]}`}
 			style={{ top: `${scrollPosition}px` }}
-			onClick={() => router.back()}
+			onClick={() => customClass === 'loginModalPage' && router.back()}
 		>
 			<div onClick={(e) => e.stopPropagation()}>
 				<div className={styles.backdrop}></div>
