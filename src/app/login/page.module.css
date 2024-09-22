@@ -1,0 +1,12 @@
+.container {
+	width: 100%;
+	padding-block: 7rem 4rem;
+}
+
+@media (min-width: 1024px) {
+	.container {
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+	}
+}

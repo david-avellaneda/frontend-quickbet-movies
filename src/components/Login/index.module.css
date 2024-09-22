@@ -1,0 +1,377 @@
+.container {
+	width: 100%;
+}
+
+.loginPage {
+	height: auto;
+	padding-block-start: 3rem;
+}
+
+.loginModalPage {
+	height: 100vh;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.6);
+	left: 0;
+	z-index: 100;
+}
+
+.container > div {
+	width: 100%;
+	height: inherit;
+}
+
+.loginModalPage .backdrop {
+	width: 100%;
+	height: 100%;
+	position: sticky;
+	top: 0;
+	backdrop-filter: blur(15px);
+}
+
+.loginModalPage > div > div:last-child {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	overflow-y: auto;
+}
+
+.content {
+	width: var(--content-width);
+	margin: 0 auto 4rem auto;
+}
+
+.loginModalPage .content {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-block: 4rem;
+	z-index: 1;
+}
+
+.loginModalPage .close {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	font-size: 1.4rem;
+	color: #fff;
+	font-weight: 600;
+	margin-block-end: 4rem;
+}
+
+.loginModalPage .close svg {
+	width: 2.2rem;
+	fill: #fff;
+}
+
+.links {
+	width: fit-content;
+	display: flex;
+	gap: 2rem;
+	margin: 0 auto 6rem auto;
+}
+
+.links a {
+	font-size: 1.4rem;
+	font-weight: 600;
+	padding: 1.5rem 3rem;
+	border-radius: 1rem;
+	color: var(--txt);
+}
+
+.loginModalPage .links a {
+	color: #fff;
+}
+
+.links a:first-child {
+	background-color: var(--elements);
+}
+
+.loginModalPage .links a:first-child {
+	background-color: #343434;
+}
+
+.links a:nth-child(2) {
+	background-color: var(--primary);
+	color: #fff;
+}
+
+.containerForm,
+.form,
+.inputs {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.containerForm > p:first-child,
+.containerForm > p:last-child {
+	font-size: 1.4rem;
+	text-align: center;
+	color: var(--txt);
+}
+
+.loginModalPage .containerForm > p:first-child,
+.loginModalPage .containerForm > p:last-child {
+	color: #fff;
+}
+
+.containerForm > p:last-child {
+	font-size: 1.3rem;
+	line-height: 2rem;
+	margin-block-start: 1rem;
+}
+
+.containerInput {
+	width: 100%;
+}
+
+.containerInput input {
+	width: 100%;
+	height: 5rem;
+	font-size: 1.5rem;
+	color: var(--txt);
+	background-color: var(--elements);
+	border-radius: 0.5rem 0.5rem 0 0;
+	border: none;
+	outline: none;
+	box-shadow: 0px -1px 0px 0px #717171 inset;
+	padding: 1rem 6rem 1rem 2rem;
+}
+
+.loginModalPage .containerInput input {
+	color: #000;
+	background-color: #fff;
+	box-shadow: 0px -1px 0px 0px #717171 inset;
+}
+
+.containerInput input::placeholder {
+	font-size: 1.4rem;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .containerInput input::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.loginModalPage .containerInput input::placeholder {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+.containerInput > div {
+	width: 100%;
+	position: relative;
+}
+
+.containerInput > div svg {
+	width: 2rem;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	margin-inline-end: 2rem;
+}
+
+.containerInput > div span svg {
+	fill: var(--txt);
+}
+
+.loginModalPage .containerInput > div span svg {
+	fill: #000;
+}
+
+.iconSuccess {
+	fill: #000;
+}
+
+.iconAlert {
+	fill: #ffc107;
+}
+
+.alertMessage {
+	font-size: 1.3rem;
+	color: var(--txt);
+	text-align: center;
+	margin-block-start: 1rem;
+}
+
+.loginModalPage .alertMessage {
+	color: #fff;
+}
+
+.containerInput > div:last-child svg {
+	fill: var(--txt);
+}
+
+.loginModalPage .containerInput > div:last-child svg {
+	fill: #000;
+}
+
+.submitBtn {
+	width: 100%;
+	height: 5rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #343434;
+	border-radius: 0.5rem;
+	padding-inline-end: 0.5rem;
+	outline: none;
+	border: none;
+	background-color: var(--primary);
+}
+
+.info {
+	width: var(--content-width);
+	background-color: var(--elements);
+	border-radius: 0 0 1.5rem 1.5rem;
+	padding: 2rem 2rem 0 2rem;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.loginModalPage .info {
+	background-color: #1c1c1c;
+	margin: 0 auto 2rem auto;
+	position: relative;
+}
+
+.info h1,
+.info p {
+	font-size: 2.5rem;
+	color: var(--txt);
+	text-align: center;
+	margin-block-end: 2rem;
+}
+
+.loginModalPage .info h1,
+.loginModalPage .info p {
+	color: #fff;
+}
+
+.info p {
+	font-size: 1.5rem;
+	line-height: 2.3rem;
+}
+
+.info img {
+	position: relative;
+	bottom: -0.3rem;
+}
+
+@media (min-width: 600px) {
+	.container > div {
+		width: 70%;
+	}
+
+	.loginPage > div {
+		margin: 0 auto;
+	}
+
+	.loginModalPage > div {
+		height: 80%;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		border-radius: 1.5rem;
+	}
+
+	.loginModalPage .backdrop {
+		border-radius: 1.5rem;
+	}
+
+	.loginModalPage > div > div:last-child {
+		height: 95%;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.loginModalPage > div > div:last-child::-webkit-scrollbar {
+		display: none;
+	}
+
+	.content {
+		margin: 0 auto 4rem auto;
+	}
+
+	.loginModalPage .content {
+		margin: 1rem 0 4rem 0;
+	}
+
+	.info img {
+		max-width: 30rem;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 1024px) {
+	.loginPage {
+		display: flex;
+		align-items: center;
+		padding-block: 2rem;
+	}
+
+	.container > div {
+		width: 90%;
+		max-width: 130rem;
+		height: 90%;
+	}
+
+	.container > div > div:last-child {
+		display: flex;
+		gap: 4rem;
+		justify-content: space-between;
+	}
+
+	.loginModalPage > div > div:last-child {
+		width: 95%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		gap: 4rem;
+		justify-content: space-between;
+	}
+
+	.content {
+		width: 55%;
+		margin-block: 3rem;
+	}
+
+	.loginModalPage .content {
+		left: 0;
+		transform: translate(0);
+	}
+
+	.containerForm {
+		width: 70%;
+		margin: 0 auto;
+	}
+
+	.info {
+		width: 45%;
+		border-radius: 0 1.5rem 1.5rem 0;
+		margin: 0;
+		display: grid;
+		align-items: center;
+		grid-template-rows: 15% 20% 65%;
+		padding: 3rem 6rem 0 6rem;
+	}
+
+	.info h1,
+	.info p {
+		margin: 0;
+	}
+
+	.info img {
+		width: 90%;
+		max-width: none;
+		margin-block-start: auto;
+	}
+}

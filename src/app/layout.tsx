@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-	children
+	children,
+	loginModal
 }: Readonly<{
 	children: React.ReactNode
+	loginModal: React.ReactNode
 }>): JSX.Element {
 	return (
 		<html lang='en'>
@@ -21,6 +23,7 @@ export default function RootLayout({
 				<WelcomeScreen />
 				<Navbar />
 				{children}
+				{loginModal}
 			</body>
 		</html>
 	)

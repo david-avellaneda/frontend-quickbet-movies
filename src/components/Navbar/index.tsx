@@ -111,7 +111,7 @@ const Navbar = (): JSX.Element => {
 					</div>
 					<div className={styles.config}>
 						<li>
-							<Link href='#' onClick={handleClick}>
+							<Link href='/login' onClick={handleClick}>
 								<Image src='/user.svg' alt='User' width={20} height={20} />
 							</Link>
 						</li>
