@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quickbet Movies
 
-## Getting Started
+Quickbet Movies is a Next.js application that allows users to search and filter movies by genre, view ratings, trailers, and additional information. The application is fully responsive and supports both dark and light modes.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dark/Light Mode**: Toggle between dark and light viewing modes.
+- **Responsive Design**: Adapts to different screen sizes.
+- **Search Filter**: Search for movies by name and filter by genre.
+- **Detailed Information**: View trailers and additional information for each movie.
+- **Error Handling**: Manage errors in case the TMDB API fails or no results are found.
+- **Dynamic Image Loader**: Displays a loader while images are loading and handles loading errors.
+- **Incremental Static Generation (ISG)**: Generates static HTML pages for each movie, regenerating them every 2 days.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install `pnpm` using `npm`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install -g pnpm
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   pnpm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Configure the TMDB API key:
+   - Create a `.env` file in the root of the project.
+   - Add the following line with your TMDB API key:
+     ```env
+     NEXT_PUBLIC_API_KEY_TMDB=YOUR_API_KEY
+     ```
+   - You can obtain your API key by creating an account on [TMDB](https://www.themoviedb.org/signup) and then accessing the API section at TMDB API.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+- Start the application in development mode:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  ```bash
+  pnpm dev
+  ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Build the application for production:
+
+  ```bash
+  pnpm build
+  ```
+
+- Start the application in production mode:
+  ```bash
+  pnpm start
+  ```
+
+## Tools
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **React Icons**
+- **Sharp**
+
+## Website Preview
+
+You can visit the live site to explore all the features and functionalities of Quickbet Movies:
+
+[Quickbet Movies](https://quickbet-movies.vercel.app)
