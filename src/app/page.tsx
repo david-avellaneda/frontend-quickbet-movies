@@ -4,6 +4,13 @@ import PromotionalBanner from '@/components/PromotionalBanner'
 import { FilterProvider } from '@/contexts/FilterContext'
 import styles from './page.module.css'
 import MovieList from '@/components/MovieList'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Quickbet Movies',
+	description:
+		'Discover and bet on your favorite movies with Quickbet Movies. Your entertainment, your choice!'
+}
 
 export default function Home() {
 	return (

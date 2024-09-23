@@ -1,6 +1,6 @@
 'use client'
 
-import Login from '@/components/Login'
+import AuthInterface from '@/components/AuthInterface'
 import { useEffect, useState } from 'react'
 
 export default function LoginModalPage() {
@@ -16,6 +16,16 @@ export default function LoginModalPage() {
 	}, [])
 
 	return (
-		<>{loaded ? <Login customClass='loginModalPage' scrollPosition={scrollPosition} /> : null}</>
+		<>
+			{loaded ? (
+				<AuthInterface
+					text='🍿 Ready to dive into the world of unlimited entertainment? Enter your credentials and let
+				the cinematic adventure begin!'
+					img='/login-yellow-hoodie-character.png'
+					modal
+					scrollPosition={scrollPosition}
+				/>
+			) : null}
+		</>
 	)
 }

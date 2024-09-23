@@ -1,29 +1,19 @@
-import { Metadata } from 'next'
 import './globals.css'
 import WelcomeScreen from '@/components/WelcomeScreen'
 import Navbar from '@/components/Navbar'
 import inter from '@/fonts/inter'
 
-export const metadata: Metadata = {
-	title: 'Quickbet Movies',
-	description:
-		'Discover and bet on your favorite movies with Quickbet Movies. Your entertainment, your choice!'
-}
-
 export default function RootLayout({
 	children,
-	loginModal
-}: Readonly<{
-	children: React.ReactNode
-	loginModal: React.ReactNode
-}>): JSX.Element {
+	login
+}: Readonly<{ children: React.ReactNode; login: React.ReactNode }>) {
 	return (
 		<html lang='en'>
 			<body className={`${inter.className} no-scroll`}>
 				<WelcomeScreen />
 				<Navbar />
 				{children}
-				{loginModal}
+				{login}
 			</body>
 		</html>
 	)

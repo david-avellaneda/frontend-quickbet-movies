@@ -1,13 +1,20 @@
-.container {
+.page {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-block: 11rem 3rem;
+}
+
+.page .container {
+	width: var(--content-width);
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.modal {
 	width: 100%;
-}
-
-.loginPage {
-	height: auto;
-	padding-block-start: 3rem;
-}
-
-.loginModalPage {
 	height: 100vh;
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.6);
@@ -20,7 +27,7 @@
 	height: inherit;
 }
 
-.loginModalPage .backdrop {
+.modal .backdrop {
 	width: 100%;
 	height: 100%;
 	position: sticky;
@@ -28,7 +35,7 @@
 	backdrop-filter: blur(15px);
 }
 
-.loginModalPage > div > div:last-child {
+.modal > div > div:last-child {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -41,15 +48,13 @@
 	margin: 0 auto 4rem auto;
 }
 
-.loginModalPage .content {
+.modal .content {
 	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
 	margin-block: 4rem;
 	z-index: 1;
 }
 
-.loginModalPage .close {
+.modal .close {
 	width: fit-content;
 	display: flex;
 	align-items: center;
@@ -63,7 +68,7 @@
 	margin-block-end: 4rem;
 }
 
-.loginModalPage .close svg {
+.modal .close svg {
 	width: 2.2rem;
 	fill: #fff;
 }
@@ -83,21 +88,18 @@
 	color: var(--txt);
 }
 
-.loginModalPage .links a {
-	color: #fff;
-}
-
-.links a:first-child {
+.page .links a {
 	background-color: var(--elements);
 }
 
-.loginModalPage .links a:first-child {
+.modal .links a {
+	color: #fff;
 	background-color: #343434;
 }
 
-.links a:nth-child(2) {
-	background-color: var(--primary);
-	color: #fff;
+.activeLink {
+	background-color: var(--primary) !important;
+	color: #fff !important;
 }
 
 .containerForm,
@@ -116,8 +118,8 @@
 	color: var(--txt);
 }
 
-.loginModalPage .containerForm > p:first-child,
-.loginModalPage .containerForm > p:last-child {
+.modal .containerForm > p:first-child,
+.modal .containerForm > p:last-child {
 	color: #fff;
 }
 
@@ -144,7 +146,7 @@
 	padding: 1rem 6rem 1rem 2rem;
 }
 
-.loginModalPage .containerInput input {
+.modal .containerInput input {
 	color: #000;
 	background-color: #fff;
 	box-shadow: 0px -1px 0px 0px #717171 inset;
@@ -159,7 +161,7 @@
 	color: rgba(255, 255, 255, 0.6);
 }
 
-.loginModalPage .containerInput input::placeholder {
+.modal .containerInput input::placeholder {
 	color: rgba(0, 0, 0, 0.6);
 }
 
@@ -181,7 +183,7 @@
 	fill: var(--txt);
 }
 
-.loginModalPage .containerInput > div span svg {
+.modal .containerInput > div span svg {
 	fill: #000;
 }
 
@@ -200,7 +202,7 @@
 	margin-block-start: 1rem;
 }
 
-.loginModalPage .alertMessage {
+.modal .alertMessage {
 	color: #fff;
 }
 
@@ -208,7 +210,7 @@
 	fill: var(--txt);
 }
 
-.loginModalPage .containerInput > div:last-child svg {
+.modal .containerInput > div:last-child svg {
 	fill: #000;
 }
 
@@ -227,6 +229,7 @@
 
 .info {
 	width: var(--content-width);
+	min-height: 46rem;
 	background-color: var(--elements);
 	border-radius: 0 0 1.5rem 1.5rem;
 	padding: 2rem 2rem 0 2rem;
@@ -234,7 +237,7 @@
 	overflow: hidden;
 }
 
-.loginModalPage .info {
+.modal .info {
 	background-color: #1c1c1c;
 	margin: 0 auto 2rem auto;
 	position: relative;
@@ -248,8 +251,8 @@
 	margin-block-end: 2rem;
 }
 
-.loginModalPage .info h1,
-.loginModalPage .info p {
+.modal .info h1,
+.modal .info p {
 	color: #fff;
 }
 
@@ -268,11 +271,7 @@
 		width: 70%;
 	}
 
-	.loginPage > div {
-		margin: 0 auto;
-	}
-
-	.loginModalPage > div {
+	.modal > div {
 		height: 80%;
 		position: relative;
 		top: 50%;
@@ -282,17 +281,17 @@
 		border-radius: 1.5rem;
 	}
 
-	.loginModalPage .backdrop {
+	.modal .backdrop {
 		border-radius: 1.5rem;
 	}
 
-	.loginModalPage > div > div:last-child {
+	.modal > div > div:last-child {
 		height: 95%;
 		top: 50%;
 		transform: translateY(-50%);
 	}
 
-	.loginModalPage > div > div:last-child::-webkit-scrollbar {
+	.modal > div > div:last-child::-webkit-scrollbar {
 		display: none;
 	}
 
@@ -300,8 +299,10 @@
 		margin: 0 auto 4rem auto;
 	}
 
-	.loginModalPage .content {
+	.modal .content {
 		margin: 1rem 0 4rem 0;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	.info img {
@@ -312,10 +313,12 @@
 }
 
 @media (min-width: 1024px) {
-	.loginPage {
+	.page {
+		min-height: 100vh;
 		display: flex;
+		justify-content: center;
 		align-items: center;
-		padding-block: 2rem;
+		padding-block: 7rem 2rem;
 	}
 
 	.container > div {
@@ -330,7 +333,7 @@
 		justify-content: space-between;
 	}
 
-	.loginModalPage > div > div:last-child {
+	.modal > div > div:last-child {
 		width: 95%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -344,7 +347,7 @@
 		margin-block: 3rem;
 	}
 
-	.loginModalPage .content {
+	.modal .content {
 		left: 0;
 		transform: translate(0);
 	}
@@ -356,12 +359,19 @@
 
 	.info {
 		width: 45%;
+		max-height: 47rem;
 		border-radius: 0 1.5rem 1.5rem 0;
 		margin: 0;
 		display: grid;
 		align-items: center;
 		grid-template-rows: 15% 20% 65%;
-		padding: 3rem 6rem 0 6rem;
+		padding: 3rem 4rem 0 4rem;
+	}
+
+	.modal .info {
+		height: 100%;
+		max-height: none;
+		margin: 0;
 	}
 
 	.info h1,
@@ -371,6 +381,8 @@
 
 	.info img {
 		width: 90%;
+		height: 100%;
+		object-fit: contain;
 		max-width: none;
 		margin-block-start: auto;
 	}

@@ -73,6 +73,20 @@ svg {
 }
 
 @media (min-width: 1024px) {
+	::-webkit-scrollbar {
+		width: 0.8rem;
+	}
+
+	::-webkit-scrollbar-track {
+		background: var(--bg);
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: var(--elements);
+		border-radius: var(--border-radius-scrollbar);
+		border: 1px solid var(--border-scrollbar);
+	}
+
 	.no-transition * {
 		transition: none !important;
 	}

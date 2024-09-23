@@ -1,25 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
+
 'use client'
 
-import { useRouter } from 'next/navigation'
-import styles from './index.module.css'
-import { useState } from 'react'
-import {
-	IoIosAlert,
-	IoIosArrowDropleft,
-	IoIosCheckmarkCircle,
-	IoIosEye,
-	IoIosEyeOff
-} from 'react-icons/io'
 import Link from 'next/link'
+import styles from './index.module.css'
+import { IoIosArrowDropleft, IoIosEye, IoIosEyeOff } from 'react-icons/io'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
 
-const Login = ({
-	scrollPosition,
-	customClass
-}: {
+interface AuthInterfaceProps {
+	text: string
+	img: string
+	page?: boolean
+	modal?: boolean
 	scrollPosition?: number
-	customClass: string
-}) => {
+}
+
+const AuthInterface = ({ text, img, modal, scrollPosition = 0, page }: AuthInterfaceProps) => {
 	const [email, setEmail] = useState('')
 	const [isValidEmail, setIsValidEmail] = useState<boolean | null>(null)
 	const [password, setPassword] = useState('')
@@ -27,6 +24,7 @@ const Login = ({
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
 	const router = useRouter()
+	const pathname = usePathname()
 
 	const validateEmail = (email: string) => {
 		const re = /^[a-z0-9._-]{4,40}@[a-z0-9.-]{4,20}\.[a-z]{2,10}$/
@@ -50,32 +48,45 @@ const Login = ({
 		setIsValidPassword(validatePassword(passwordValue))
 	}
 
-	const togglePasswordVisibility = () => {
-		setIsPasswordVisible(!isPasswordVisible)
-	}
-
 	return (
 		<section
-			className={`${styles.container} ${styles[customClass]}`}
+			className={`${styles.container} ${page ? styles.page : ''} ${modal ? styles.modal : ''}`}
 			style={{ top: `${scrollPosition}px` }}
-			onClick={() => customClass === 'loginModalPage' && router.back()}
+			onClick={() => modal && router.back()}
+			id={modal ? 'modal' : ''}
 		>
 			<div onClick={(e) => e.stopPropagation()}>
 				<div className={styles.backdrop}></div>
 				<div>
 					<div className={styles.content}>
-						{customClass === 'loginModalPage' && (
+						{modal && (
 							<button className={styles.close} onClick={() => router.back()}>
 								<IoIosArrowDropleft />
 								Back
 							</button>
 						)}
 						<div className={styles.links}>
-							<Link href='#'>Sign up</Link>
-							<Link href='/login'>Log In</Link>
+							<Link
+								href='/signup'
+								className={pathname === '/signup' ? styles.activeLink : ''}
+								onClick={(e) => {
+									e.preventDefault()
+									if (modal) {
+										router.back()
+										setTimeout(() => router.push('/signup'), 50)
+									} else {
+										router.push('/signup')
+									}
+								}}
+							>
+								Sign up
+							</Link>
+							<Link href='/login' className={pathname === '/login' ? styles.activeLink : ''}>
+								Log In
+							</Link>
 						</div>
 						<div className={styles.containerForm}>
-							<p>We love having you back</p>
+							{pathname === '/login' && <p>We love having you back</p>}
 							<form className={styles.form} name='login' onSubmit={(e) => e.preventDefault()}>
 								<div className={styles.inputs}>
 									<div className={styles.containerInput}>
@@ -88,11 +99,6 @@ const Login = ({
 												value={email}
 												onChange={handleEmailChange}
 											/>
-											{isValidEmail === null ? null : isValidEmail ? (
-												<IoIosCheckmarkCircle className={styles.iconSuccess} />
-											) : (
-												<IoIosAlert className={styles.iconAlert} />
-											)}
 										</div>
 										{isValidEmail !== null && isValidEmail === false && (
 											<p className={styles.alertMessage}>
@@ -109,7 +115,7 @@ const Login = ({
 												value={password}
 												onChange={handlePasswordChange}
 											/>
-											<span onClick={togglePasswordVisibility}>
+											<span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
 												{isPasswordVisible ? <IoIosEye /> : <IoIosEyeOff />}
 											</span>
 										</div>
@@ -134,11 +140,8 @@ const Login = ({
 					</div>
 					<div className={styles.info}>
 						<h1>Welcome back to Quickbet Movies!</h1>
-						<p>
-							🍿 Ready to dive into the world of unlimited entertainment? Enter your credentials and
-							let the cinematic adventure begin!
-						</p>
-						<img src='/login-yellow-hoodie-character.png' alt='Yellow hoodie character' />
+						<p>{text}</p>
+						<img src={img} alt='Yellow hoodie character' />
 					</div>
 				</div>
 			</div>
@@ -146,4 +149,4 @@ const Login = ({
 	)
 }
 
-export default Login
+export default AuthInterface
