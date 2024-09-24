@@ -1,4 +1,11 @@
 import AuthInterface from '@/components/AuthInterface'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+	title: 'Login - Quickbet Movies',
+	description:
+		'Join Quickbet Movies and place bets on your favorite films. Your entertainment, your choice!'
+}
 
 export default function LoginPage() {
 	return (
