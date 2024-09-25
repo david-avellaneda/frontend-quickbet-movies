@@ -2,6 +2,7 @@ import { MovieDetails, MovieListResponse } from '@/interfaces/movies'
 import styles from './index.module.css'
 import MovieCard from '../MovieCard'
 import { err_msg, initialMovieListResponse, TMDB_API_OPTIONS } from '@/helpers/fetchMovieDetails'
+import { formatDate } from '@/helpers/formatDate'
 
 interface CategoryPageProps {
 	title: string
@@ -23,6 +24,12 @@ const fetchMovies = async (endpoint: string) => {
 			if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`)
 
 			const data: MovieListResponse = await res.json()
+
+			data.results = data.results.map((movie) => ({
+				...movie,
+				release_date: formatDate(movie.release_date)
+			}))
+
 			allResults.push(...data.results)
 		}
 		const uniqueResults = allResults.filter(
