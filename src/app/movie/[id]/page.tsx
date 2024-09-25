@@ -152,7 +152,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 					<section className={styles.containerDetails}>
 						{backdrop_path !== null && (
 							<div className={styles.backdrop}>
-								<ImageUploader size='w1280' path={poster_path} alt={title} />
+								<ImageUploader size='w1280' path={backdrop_path} alt={title} />
 								<div className={styles.gradient}></div>
 							</div>
 						)}
